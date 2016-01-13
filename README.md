@@ -9,7 +9,7 @@ I structured my shell such that it creates a new process for each new command (e
 
 
 # For Shell_Two
-# Added features
+- Added features
 
 The shell can redirect stdout to a file. The shell can also directly attach one process's stdout to another's stdin using something called a 'pipe'. A pipe is a one-way channel in the kernel: at one end you can only write, at the other you can only read. To a process, a pipe looks more or less like a file descriptor, and by attaching the 'write' end of a pipe to one process's stdout and the 'read' end to another's stdin, it is possible to feed the output of one process directly to the input of another. If the user types "program1 args1 | program2 args2", use the output from program1 as the input to program2. These features are relatively easy to implement. After fork (but before exec), the STDIN and STDOUT file descriptors are already set up to refer to user-typed input and output to the terminal respectively. The dup2 system call is useful for setting STDIN and STDOUT to refer to other sources/destinations of data. The pipe system call (man 2 pipe) may be useful for setting up a pair of file descriptors for piping.
 
